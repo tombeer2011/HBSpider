@@ -1,3 +1,4 @@
+#encoding: utf-8
 '''
 Created on Jan 4, 2018
 
@@ -9,19 +10,13 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf8")
 
-from lianjia.downloder.Downloader import Downloader
-from lianjia.parser.Parser import Parser
-from lianjia.storage.Storage import Storage
+from lianjia.manager.Manager import Manager
+
 
 def main():
-    dl = Downloader()
-    dl.test()
-    
-    pa = Parser()
-    pa.test()
-    
-    st = Storage()
-    st.test()
+    manager = Manager()
+    manager.test()
+    pass
 
 
 main()

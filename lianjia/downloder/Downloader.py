@@ -1,8 +1,15 @@
+#encoding: utf-8
 '''
 Created on Jan 4, 2018
 
 @author: hb
 '''
+
+import sys
+
+
+reload(sys)
+sys.setdefaultencoding("utf8")
 
 class Downloader(object):
     mainUrl = ''
@@ -37,5 +44,5 @@ class Downloader(object):
     获取url列表
     '''
     def getUrlList(self):
-        return self.rulList
+        return self.rulList 
     
