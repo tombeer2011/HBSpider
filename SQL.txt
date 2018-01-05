@@ -1,0 +1,11 @@
+默认数据库使用MySQL
+创建当前数据 数据库
+CREATE SCHEMA `HBSpider` DEFAULT CHARACTER SET utf8 ;
+创建备份数据 数据库
+CREATE SCHEMA `HBSpider_bak` DEFAULT CHARACTER SET utf8 ;
+
+1、当前数据表，主要用来存储当前最新房源信息 cur_house_info
+2、历史数据表，主要用来存储房源信息的历史变更信息 his_house_info
+3、成交记录表 deal_house_info
+4、不明原因消失的房源表 disappear_house_info
+5、看房记录表 browse_house_info
