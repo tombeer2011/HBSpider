@@ -56,7 +56,11 @@ class Manager(object):
         return self.downloader.getUrlList(html)
         pass
 
-    def getDetailHtml(self):
-        html = self.downloader.downloadHtmlContent()
+    '''
+    获取每个房源的详细信息
+    '''
+    def getDetailHtml(self,url):
+        html = self.downloader.downloadHtmlContent(url)
+        return self.downloader.getDetailObj(html)
 
         pass

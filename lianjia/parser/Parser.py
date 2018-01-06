@@ -38,7 +38,9 @@ class Parser(object):
             urlList.append(Config.LIANJIA_DOMAIN + str(tmp[i].attrs['href']))
         # print (urlList)
         return urlList
-    
+
+
+
     '''
     获取每个房源的详细信息
     '''
