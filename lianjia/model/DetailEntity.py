@@ -26,6 +26,8 @@ class DetailEntity(object):
     lianjiaHouseIndex = ''
     '''详情标题'''
     title=''
+    '''房屋价格'''
+    priceNum = 0
 
     def __init__(self):
         '''
@@ -34,5 +36,5 @@ class DetailEntity(object):
         self.baseInfoEntity = BaseInfoEntity()
         self.dealInfoEntity = DealInfoEntity()
         self.houseTypeDetailsEntity = HouseTypeDetailsEntity()
-        self.locationDetailEntity = LocationDetailsEntity()
+        self.locationDetailsEntity = LocationDetailsEntity()
         pass

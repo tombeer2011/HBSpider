@@ -26,6 +26,8 @@ class LocationDetailsEntity(object):
     businessDistrictName = ''
     '''小区所在地址'''
     estateAddress = ''
+    '''房源编号'''
+    lianjiaHouseIndex = ''
 
     def __init__(self):
         '''

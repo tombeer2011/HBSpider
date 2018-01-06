@@ -22,7 +22,7 @@ class BaseInfoEntity(object):
     houseTypeBathNum = 0
 
     '''配备电梯'''
-    isLift = False
+    lift = ''
     ''''''
 
     '''建筑面积'''
@@ -31,6 +31,7 @@ class BaseInfoEntity(object):
     heatingMethod = ''
     '''所在楼层'''
     houseFloor = ''
+    '''总共层高'''
     houseTotalFloors = -1
     '''装修情况'''
     houseDecorate = ''

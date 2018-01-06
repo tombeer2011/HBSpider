@@ -11,7 +11,7 @@ reload(sys)
 sys.setdefaultencoding("utf8")
 
 from lianjia.manager.Manager import Manager
-
+import json
 
 urlList = []
 '''爬取的页数'''
@@ -29,7 +29,12 @@ def main():
     #         manager.getDetailHtml(urlList[i][j])
     #         pass
 
-    manager.getDetailHtml('''http://sh.lianjia.com/ershoufang/sh4591094.html''')
+
+    tmp = manager.getDetailHtml('''http://sh.lianjia.com/ershoufang/sh4591094.html''')
+    # myClassDict = tmp.__dict__
+    # print(myClassDict)
+    # myClassJson = json.dumps(myClassDict)
+    # print(myClassJson)
     pass
 
 
