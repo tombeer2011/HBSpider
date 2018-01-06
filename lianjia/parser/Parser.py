@@ -56,10 +56,10 @@ class Parser(object):
         detailEntity = DetailEntity()
         tmp = element.find_all('ul',attrs = {'class':'baseinfo-tb'})
         '''获取房屋信息标题'''
-        detailEntity.title = element.find('h1',attrs = {'class':'header-title'}).string
+        detailEntity.title = element.find('h1',attrs = {'class':'header-title'}).string.strip()
         detailEntity.lianjiaHouseIndex = element.find()
         tmp = element.find_all('span',attrs = {'class':'price-num'})
-        detailEntity.priceNum = tmp[0].text
+        detailEntity.priceNum = tmp[0].text.strip()
 
         detailEntity.baseInfoEntity = self.passerBaseInfo(element)
         detailEntity.dealInfoEntity = self.passerDealInfo(element)
@@ -77,26 +77,26 @@ class Parser(object):
         list = str.split('\n')
         for i in range(len(list)):
             if(list[i] == u'房屋户型'):
-                baseInfoEntity.houseTypeRoomNum = list[i + 1]
+                baseInfoEntity.houseTypeRoomNum = list[i + 1].strip()
             if(list[i] == u'配备电梯'):
-                baseInfoEntity.lift = list[i + 1]
+                baseInfoEntity.lift = list[i + 1].strip()
             if(list[i] == u'建筑面积'):
-                baseInfoEntity.houseArea = list[i + 1]
+                baseInfoEntity.houseArea = list[i + 1].strip()
             if(list[i] == u'供暖方式'):
-                baseInfoEntity.heatingMethod = list[i + 1]
+                baseInfoEntity.heatingMethod = list[i + 1].strip()
 
         tmp = element.find_all('div',attrs = {'class':'module-col baseinfo-col3'})
         str = tmp[0].text
         list = str.split('\n')
         for i in range(len(list)):
             if(list[i] == u'所在楼层'):
-                baseInfoEntity.houseFloor = list[i + 1]
+                baseInfoEntity.houseFloor = list[i + 1].strip()
             if(list[i] == u'装修情况'):
-                baseInfoEntity.houseDecorate = list[i + 1]
+                baseInfoEntity.houseDecorate = list[i + 1].strip()
             if(list[i] == u'房屋朝向'):
-                baseInfoEntity.houseOrientation = list[i + 1]
+                baseInfoEntity.houseOrientation = list[i + 1].strip()
             if(list[i] == u'车位情况'):
-                baseInfoEntity.isParkingLot = list[i + 1]
+                baseInfoEntity.isParkingLot = list[i + 1].strip()
 
         tmp = element.find_all('p',attrs = {'class':'u-mt8 u-fz12'})
         baseInfoEntity.houseCreateTime = tmp[2].text.replace('\n','').strip()
@@ -110,18 +110,18 @@ class Parser(object):
         list = str.split('\n')
         for i in range(len(list)):
             if(list[i] == u'上次交易'):
-                dealInfo.lastDealTime = list[i + 1]
+                dealInfo.lastDealTime = list[i + 3].strip()
             if(list[i] == u'房本年限'):
-                dealInfo.housePeriod = list[i + 1]
+                dealInfo.housePeriod = list[i + 1].strip()
 
         tmp = element.find_all('div', attrs = {'class': 'module-col baseinfo-col3'})
-        str = tmp[0].text
+        str = tmp[1].text
         list = str.split('\n')
         for i in range(len(list)):
             if(list[i] == u'售房原因'):
-                dealInfo.sellReason = list[i + 1]
+                dealInfo.sellReason = list[i + 1].strip()
             if(list[i] == u'房屋类型'):
-                dealInfo.houseClass = list[i + 1]
+                dealInfo.houseClass = list[i + 3].strip()
         return dealInfo
         pass
 
@@ -142,20 +142,20 @@ class Parser(object):
         list = str.split('\n')
         for i in range(len(list)):
             if(list[i] == u'环线信息'):
-                locationDetails.cycleInfo = list[i + 1]
+                locationDetails.cycleInfo = list[i + 1].strip()
             if(list[i] == u'所在地址'):
-                locationDetails.estateAddress = list[i +1]
+                locationDetails.estateAddress = list[i +1].strip()
             if(list[i] == u'房源编号'):
                 locationDetails.lianjiaHouseIndex = list[i + 2].strip()
         tmp = element.find_all('span',attrs = {'class':'maininfo-estate-name'})
         list = tmp[0].contents
         for i in range(len(list)):
             if(i == 0):
-                locationDetails.estateName = list[i]
+                locationDetails.estateName = list[i].text.strip()
             if(i == 2):
-                locationDetails.districtName = list[i]
+                locationDetails.districtName = list[i].text.strip()
             if(i == 4):
-                locationDetails.businessDistrictName = list[i]
+                locationDetails.businessDistrictName = list[i].text.strip()
         tmp = element.find_all('span',attrs = {'class':'item-cell maininfo-estate-address'})
         locationDetails.estateAddress = tmp[0].text
         return locationDetails
