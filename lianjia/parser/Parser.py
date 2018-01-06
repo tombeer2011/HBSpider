@@ -46,5 +46,9 @@ class Parser(object):
     '''
     def passerContentDetail(self,html):
 
+        element = BeautifulSoup(html,'html.parser')
+
+        tmp = element.find_all('ul',attrs={'class':'baseinfo-tb'})
+
         pass
         
