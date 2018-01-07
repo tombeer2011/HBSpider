@@ -11,6 +11,7 @@ reload(sys)
 sys.setdefaultencoding("utf8")
 
 from bs4 import BeautifulSoup
+import json
 
 from lianjia.config.Config import Config
 from lianjia.model.DetailEntity import DetailEntity
@@ -159,5 +160,9 @@ class Parser(object):
         tmp = element.find_all('span',attrs = {'class':'item-cell maininfo-estate-address'})
         locationDetails.estateAddress = tmp[0].text
         return locationDetails
+        pass
+
+    def passerHouseRoomsDetails(self,jsonText):
+        # jsonData = json.loads(jsonText)
         pass
 

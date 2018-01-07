@@ -62,4 +62,14 @@ class Downloader(object):
     def getDetailObj(self,html):
         return self.parser.passerContentDetail(html)
         pass
-    
+
+    '''获取Json数据'''
+    def getJson(self,url):
+        request = requests.get(url)
+        jsonText = request.content
+        return jsonText
+        pass
+
+    def getHouseRoomsDetail(self,jsonText):
+        self.parser.passerHouseRoomsDetails(jsonText)
+        pass

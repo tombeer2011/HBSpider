@@ -10,10 +10,12 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf8")
 
+
 from lianjia.downloder.Downloader import Downloader
 from lianjia.parser.Parser import Parser
 from lianjia.storage.Storage import Storage
 from lianjia.config.Config import Config
+from lianjia.comm.ReUtils import ReUtils
 
 class Manager(object):
     '''
@@ -61,6 +63,16 @@ class Manager(object):
     '''
     def getDetailHtml(self,url):
         html = self.downloader.downloadHtmlContent(url)
-        return self.downloader.getDetailObj(html)
+        detailEntity = self.downloader.getDetailObj(html)
 
+        houseIndex = ReUtils().getNumeric(detailEntity.lianjiaHouseIndex)
+        self.getHouseRoomsDetails(Config.LIANJIA_ROOMS_DATAIL.format(houseIndex[0]))
+
+        return detailEntity
+        pass
+
+    '''获取房屋每个房间的详细信息'''
+    def getHouseRoomsDetails(self,url):
+        jsonText = self.downloader.getJson(url)
+        return self.downloader.getHouseRoomsDetail(jsonText)
         pass
