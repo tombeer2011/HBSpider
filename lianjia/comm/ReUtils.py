@@ -47,3 +47,14 @@ class ReUtils(object):
                 result.append(tmp)
         return result
         pass
+
+    '''获取浮点数或者正整数'''
+    @staticmethod
+    def getNumbericValue(str):
+        pattern = re.compile(r'((^[0-9]*$))|(^(-?\d+)(\.\d+)?)')
+        value = re.match(pattern,str)
+        if(value):
+            return value.group()
+        else:
+            return -1
+        pass

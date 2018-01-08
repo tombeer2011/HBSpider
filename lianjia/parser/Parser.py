@@ -47,8 +47,6 @@ class Parser(object):
         # print (urlList)
         return urlList
 
-
-
     '''
     获取每个房源的详细信息
     '''
@@ -83,7 +81,7 @@ class Parser(object):
             if(list[i] == u'配备电梯'):
                 baseInfoEntity.lift = list[i + 1].strip()
             if(list[i] == u'建筑面积'):
-                baseInfoEntity.houseArea = list[i + 1].strip()
+                baseInfoEntity.houseArea = ReUtils.getNumbericValue(list[i + 1].strip())
             if(list[i] == u'供暖方式'):
                 baseInfoEntity.heatingMethod = list[i + 1].strip()
 
@@ -101,7 +99,7 @@ class Parser(object):
                 baseInfoEntity.isParkingLot = list[i + 1].strip()
 
         tmp = element.find_all('p',attrs = {'class':'u-mt8 u-fz12'})
-        baseInfoEntity.houseCreateTime = tmp[2].text.replace('\n','').strip()
+        baseInfoEntity.houseCreateTime = ReUtils.getNumbericValue(tmp[2].text.replace('\n','').strip())
         return baseInfoEntity
 
     ''''解析交易信息'''
