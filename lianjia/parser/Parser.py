@@ -76,27 +76,42 @@ class Parser(object):
         str = tmp[0].text
         list = str.split('\n')
         for i in range(len(list)):
-            if(list[i] == u'房屋户型'):
-                baseInfoEntity.houseTypeRoomNum = list[i + 1].strip()
-            if(list[i] == u'配备电梯'):
-                baseInfoEntity.lift = list[i + 1].strip()
-            if(list[i] == u'建筑面积'):
-                baseInfoEntity.houseArea = ReUtils.getNumbericValue(list[i + 1].strip())
-            if(list[i] == u'供暖方式'):
-                baseInfoEntity.heatingMethod = list[i + 1].strip()
+            if(list[i] != None):
+                if(list[i] == u'房屋户型'):
+                    roomsHalls = ReUtils.getRoomsHalls(list[i + 1].strip())
+                    for j in range(len(roomsHalls)):
+                        if(j == 0):
+                            baseInfoEntity.houseTypeRoomNum = roomsHalls[j]
+                        if(j == 1):
+                            baseInfoEntity.houseTypeHallNum = roomsHalls[j]
+                        if(j == 2):
+                            baseInfoEntity.houseTypeBathNum = roomsHalls[j]
+                if(list[i] == u'配备电梯'):
+                    baseInfoEntity.lift = list[i + 1].strip()
+                if(list[i] == u'建筑面积'):
+                    baseInfoEntity.houseArea = ReUtils.getNumbericValue(list[i + 1].strip())
+                if(list[i] == u'供暖方式'):
+                    baseInfoEntity.heatingMethod = list[i + 1].strip()
 
         tmp = element.find_all('div',attrs = {'class':'module-col baseinfo-col3'})
         str = tmp[0].text
         list = str.split('\n')
         for i in range(len(list)):
-            if(list[i] == u'所在楼层'):
-                baseInfoEntity.houseFloor = list[i + 1].strip()
-            if(list[i] == u'装修情况'):
-                baseInfoEntity.houseDecorate = list[i + 1].strip()
-            if(list[i] == u'房屋朝向'):
-                baseInfoEntity.houseOrientation = list[i + 1].strip()
-            if(list[i] == u'车位情况'):
-                baseInfoEntity.isParkingLot = list[i + 1].strip()
+            if(list[i] != None):
+                if(list[i] == u'所在楼层'):
+                    # baseInfoEntity.houseFloor = list[i + 1].strip()
+                    floors = ReUtils.getFloor(list[i + 1].strip())
+                    for j in range(len(floors)):
+                        if(j == 0):
+                            baseInfoEntity.houseFloor = floors[j]
+                        if(j == 1):
+                            baseInfoEntity.houseTotalFloors = floors[j]
+                if(list[i] == u'装修情况'):
+                    baseInfoEntity.houseDecorate = list[i + 1].strip()
+                if(list[i] == u'房屋朝向'):
+                    baseInfoEntity.houseOrientation = list[i + 1].strip()
+                if(list[i] == u'车位情况'):
+                    baseInfoEntity.isParkingLot = list[i + 1].strip()
 
         tmp = element.find_all('p',attrs = {'class':'u-mt8 u-fz12'})
         baseInfoEntity.houseCreateTime = ReUtils.getNumbericValue(tmp[2].text.replace('\n','').strip())

@@ -58,3 +58,23 @@ class ReUtils(object):
         else:
             return -1
         pass
+
+    '''获取X室X厅X卫'''
+    @staticmethod
+    def getRoomsHalls(str):
+        pattern = u'室|厅|卫'
+        result = re.split(pattern,str)
+        return result
+        pass
+
+    '''获取所在楼层和总层高'''
+    @staticmethod
+    def getFloor(str):
+        pattern = u'/'
+        result = []
+        tmp = re.split(pattern,str)
+        result.append(tmp[0])
+        if(len(tmp)>1):
+            result.append(ReUtils.getNumbericValue(tmp[1]))
+        return result
+        pass
