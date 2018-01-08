@@ -19,6 +19,7 @@ from lianjia.model.BaseInfoEntity import BaseInfoEntity
 from lianjia.model.DealInfoEntity import DealInfoEntity
 from lianjia.model.HouseTypeDetailsEntity import HouseTypeDetailsEntity
 from lianjia.model.LocationDetailsEntity import LocationDetailsEntity
+
 class Parser(object):
     '''
     classdocs

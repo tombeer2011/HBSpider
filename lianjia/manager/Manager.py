@@ -29,14 +29,14 @@ class Manager(object):
         self.downloader = Downloader()
 
     def test(self):
-        dl = Downloader()
-        dl.test()
-    
-        pa = Parser()
-        pa.test()
-    
-        st = Storage()
-        st.test()
+        self.dl = Downloader()
+        self.dl.test()
+
+        self.pa = Parser()
+        self.pa.test()
+
+        self.st = Storage()
+        self.st.test()
         self.getDetailLinks(1)
     '''
     获取所有列表信息里的详情URL
