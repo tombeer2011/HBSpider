@@ -65,7 +65,7 @@ class Manager(object):
         html = self.downloader.downloadHtmlContent(url)
         detailEntity = self.downloader.getDetailObj(html)
 
-        houseIndex = ReUtils().getNumeric(detailEntity.lianjiaHouseIndex)
+        houseIndex = ReUtils.getNumeric(detailEntity.lianjiaHouseIndex)
         self.getHouseRoomsDetails(Config.LIANJIA_ROOMS_DATAIL.format(houseIndex[0]))
 
         return detailEntity

@@ -22,7 +22,9 @@ class ReUtils(object):
         Constructor
         '''
 
-    def getNumeric(self,string):
+    '''通过正则获取字符串中的数字'''
+    @staticmethod
+    def getNumeric(string):
         pattern = re.compile(r'\d+')
         houseIndex = re.findall(pattern, string)
         return houseIndex
