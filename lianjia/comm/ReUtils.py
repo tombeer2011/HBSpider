@@ -11,7 +11,7 @@ reload(sys)
 sys.setdefaultencoding("utf8")
 
 import re
-
+import string
 class ReUtils(object):
     '''
     classdocs
@@ -28,3 +28,22 @@ class ReUtils(object):
         pattern = re.compile(r'\d+')
         houseIndex = re.findall(pattern, string)
         return houseIndex
+
+    '''去除首尾回车和换行符'''
+    @staticmethod
+    def trimFLEnter(string):
+        string = string.strip("""\n\r\t""")
+        return string
+        pass
+
+    '''获取中间有多个换行符的字符串'''
+    @staticmethod
+    def replacEnter(str):
+        tmpList = str.split('\n')
+        result = []
+        for i in range(len(tmpList)):
+            tmp = tmpList[i].strip(string.punctuation).strip()
+            if(tmp != u'\n' and tmp != u'' and tmp != '\r' and tmp != '\t'):
+                result.append(tmp)
+        return result
+        pass

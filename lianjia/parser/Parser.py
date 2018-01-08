@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 import json
 
 from lianjia.config.Config import Config
+from lianjia.comm.ReUtils import ReUtils
 from lianjia.model.DetailEntity import DetailEntity
 from lianjia.model.BaseInfoEntity import BaseInfoEntity
 from lianjia.model.DealInfoEntity import DealInfoEntity
@@ -109,21 +110,25 @@ class Parser(object):
         dealInfo = DealInfoEntity()
         tmp = element.find_all('div', attrs = {'class': 'module-col baseinfo-col2'})
         str = tmp[1].text
-        list = str.split('\n')
+        str = ReUtils.trimFLEnter(str)
+        list = ReUtils.replacEnter(str)
+        # list = str.split('\n')
         for i in range(len(list)):
             if(list[i] == u'上次交易'):
-                dealInfo.lastDealTime = list[i + 3].strip()
+                dealInfo.lastDealTime = list[i + 1].strip()
             if(list[i] == u'房本年限'):
                 dealInfo.housePeriod = list[i + 1].strip()
 
         tmp = element.find_all('div', attrs = {'class': 'module-col baseinfo-col3'})
         str = tmp[1].text
-        list = str.split('\n')
+        str = ReUtils.trimFLEnter(str)
+        list = ReUtils.replacEnter(str)
+        # list = str.split('\n')
         for i in range(len(list)):
             if(list[i] == u'售房原因'):
                 dealInfo.sellReason = list[i + 1].strip()
             if(list[i] == u'房屋类型'):
-                dealInfo.houseClass = list[i + 3].strip()
+                dealInfo.houseClass = list[i + 1].strip()
         return dealInfo
         pass
 
@@ -141,14 +146,16 @@ class Parser(object):
         locationDetails = LocationDetailsEntity()
         tmp = element.find_all('ul',attrs = {'class':'maininfo-minor maininfo-item'})
         str = tmp[0].text
-        list = str.split('\n')
+        str = ReUtils.trimFLEnter(str)
+        list = ReUtils.replacEnter(str)
         for i in range(len(list)):
             if(list[i] == u'环线信息'):
                 locationDetails.cycleInfo = list[i + 1].strip()
             if(list[i] == u'所在地址'):
                 locationDetails.estateAddress = list[i +1].strip()
             if(list[i] == u'房源编号'):
-                locationDetails.lianjiaHouseIndex = list[i + 2].strip()
+                locationDetails.lianjiaHouseIndex = list[i + 1].strip()
+
         tmp = element.find_all('span',attrs = {'class':'maininfo-estate-name'})
         list = tmp[0].contents
         for i in range(len(list)):
