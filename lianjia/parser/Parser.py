@@ -20,7 +20,7 @@ from lianjia.model.BaseInfoEntity import BaseInfoEntity
 from lianjia.model.DealInfoEntity import DealInfoEntity
 from lianjia.model.HouseTypeDetailsEntity import HouseTypeDetailsEntity
 from lianjia.model.LocationDetailsEntity import LocationDetailsEntity
-
+import types
 class Parser(object):
     '''
     classdocs
@@ -66,7 +66,6 @@ class Parser(object):
 
         detailEntity.baseInfoEntity = self.passerBaseInfo(element)
         detailEntity.dealInfoEntity = self.passerDealInfo(element)
-        detailEntity.houseTypeDetailsEntity = self.passerHouseTypeDetails(element)
         detailEntity.locationDetailsEntity = self.passerLocationDetails(element)
         detailEntity.lianjiaHouseIndex = detailEntity.locationDetailsEntity.lianjiaHouseIndex
         return detailEntity
@@ -132,15 +131,6 @@ class Parser(object):
         return dealInfo
         pass
 
-    '''解析房屋类型信息'''
-    def passerHouseTypeDetails(self,element):
-        '''此处可以用json获取，再暂时先不做'''
-        houseTypeDetails = HouseTypeDetailsEntity()
-        tmp = element.find_all('ul',attrs = {'id':'js-side-room-list','class':'side-room-list'})
-
-        return houseTypeDetails
-        pass
-
     '''解析房屋位置信息'''
     def passerLocationDetails(self,element):
         locationDetails = LocationDetailsEntity()
@@ -170,7 +160,25 @@ class Parser(object):
         return locationDetails
         pass
 
+    '''解析房屋信息的json数据'''
     def passerHouseRoomsDetails(self,jsonText):
-        # jsonData = json.loads(jsonText)
+        jsonDict = dict()
+        jsonData = json.loads(jsonText)
+        result = []
+        if(jsonData['cellInfoList'] != None):
+            list = jsonData['cellInfoList']
+            for i in range(len(list)):
+                houseTypeDetails = HouseTypeDetailsEntity()
+                tmpKeys = dict(list[i])
+                if(tmpKeys.has_key('area')):
+                    houseTypeDetails.roomArea = list[i]['area']
+                if (tmpKeys.has_key('face')):
+                    houseTypeDetails.roomOrientation = list[i]['face']
+                if (tmpKeys.has_key('name')):
+                    houseTypeDetails.roomName = list[i]['name']
+                if (tmpKeys.has_key('windowTypeName')):
+                    houseTypeDetails.roomWindowType = list[i]['windowTypeName']
+                result.append(houseTypeDetails)
+        return result
         pass
 

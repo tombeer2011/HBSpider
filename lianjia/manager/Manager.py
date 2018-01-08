@@ -65,8 +65,9 @@ class Manager(object):
         html = self.downloader.downloadHtmlContent(url)
         detailEntity = self.downloader.getDetailObj(html)
 
+        '''获取每个房屋的每个房间的详细信息'''
         houseIndex = ReUtils.getNumeric(detailEntity.lianjiaHouseIndex)
-        self.getHouseRoomsDetails(Config.LIANJIA_ROOMS_DATAIL.format(houseIndex[0]))
+        detailEntity.houseTypeDetailsEntityList = self.getHouseRoomsDetails(Config.LIANJIA_ROOMS_DATAIL.format(houseIndex[0]))
 
         return detailEntity
         pass
@@ -74,5 +75,5 @@ class Manager(object):
     '''获取房屋每个房间的详细信息'''
     def getHouseRoomsDetails(self,url):
         jsonText = self.downloader.getJson(url)
-        return self.downloader.getHouseRoomsDetail(jsonText)
+        return self.downloader.getHouseRoomsDetail(jsonText.encode('utf-8'))
         pass

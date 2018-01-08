@@ -70,6 +70,7 @@ class Downloader(object):
         return jsonText
         pass
 
+    '''获取房屋每个房间的详细信息'''
     def getHouseRoomsDetail(self,jsonText):
-        self.parser.passerHouseRoomsDetails(jsonText)
+        return self.parser.passerHouseRoomsDetails(jsonText)
         pass
