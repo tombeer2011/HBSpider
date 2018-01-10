@@ -20,6 +20,7 @@ from lianjia.model.BaseInfoEntity import BaseInfoEntity
 from lianjia.model.DealInfoEntity import DealInfoEntity
 from lianjia.model.HouseTypeDetailsEntity import HouseTypeDetailsEntity
 from lianjia.model.LocationDetailsEntity import LocationDetailsEntity
+from lianjia.model.EstateDetailEntity import EstateDetailEntity
 import types
 class Parser(object):
     '''
@@ -66,6 +67,7 @@ class Parser(object):
         detailEntity.dealInfoEntity = self.passerDealInfo(element)
         detailEntity.locationDetailsEntity = self.passerLocationDetails(element)
         detailEntity.lianjiaHouseIndex = detailEntity.locationDetailsEntity.lianjiaHouseIndex
+        detailEntity.estateDetailEntity = self.passerEstateDetails(element)
         return detailEntity
         pass
 
@@ -193,5 +195,32 @@ class Parser(object):
                     houseTypeDetails.roomWindowType = list[i]['windowTypeName']
                 result.append(houseTypeDetails)
         return result
+        pass
+
+    '''解析小区简介'''
+    def passerEstateDetails(self,element):
+        estateDetail = EstateDetailEntity()
+        tmp = element.find_all('ul',attrs = {'class' : 'intro-detail'})
+        if(tmp is not None and len(tmp) > 1):
+            str = tmp[1].text
+            str = ReUtils.trimFLEnter(str)
+            list = ReUtils.replacEnter(str)
+            for i in range(len(list)):
+                if(list[i] == u'挂牌均价'):
+                    estateDetail.averagePrice = ReUtils.getNumbericValue(list[i + 1])
+                if(list[i] == u'楼栋总数'):
+                    estateDetail.buildingTotalNum = ReUtils.getNumbericValue(list[i + 1])
+                if(list[i] == u'房屋总数'):
+                    estateDetail.houseTotalNum = ReUtils.getNumbericValue(list[i + 1])
+                if(list[i] == u'物业公司'):
+                    estateDetail.propertyManagementCompany = list[i + 1]
+                if(list[i] == u'开发商'):
+                    estateDetail.developers = list[i + 1]
+                if(list[i] == u'挂牌房源'):
+                    estateDetail.sellingHouseNum = ReUtils.getNumbericValue(list[i +1])
+                    if(i + 2 <= len(list)):
+                        estateDetail.rentHouseNum = ReUtils.getNumbericValue(list[i + 2])
+            pass
+        return estateDetail
         pass
 

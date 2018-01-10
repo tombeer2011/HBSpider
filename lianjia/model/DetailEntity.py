@@ -16,6 +16,7 @@ from lianjia.model.DealInfoEntity import DealInfoEntity
 from lianjia.model.HouseTypeDetailsEntity import HouseTypeDetailsEntity
 from lianjia.model.LocationDetailsEntity import LocationDetailsEntity
 from lianjia.model.ViewHouseHistoryEntity import ViewHouseHistoryEntity
+from lianjia.model.EstateDetailEntity import EstateDetailEntity
 
 class DetailEntity(object):
     '''
@@ -37,4 +38,5 @@ class DetailEntity(object):
         self.dealInfoEntity = DealInfoEntity()
         self.locationDetailsEntity = LocationDetailsEntity()
         self.houseTypeDetailsEntityList = []
+        self.estateDetailEntity = EstateDetailEntity()
         pass
