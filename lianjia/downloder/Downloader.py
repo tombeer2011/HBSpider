@@ -74,3 +74,8 @@ class Downloader(object):
     def getHouseRoomsDetail(self,jsonText):
         return self.parser.passerHouseRoomsDetails(jsonText)
         pass
+
+    '''获取看房记录信息实体'''
+    def getViewHouseHistoryEntity(self,html):
+        return self.parser.passerViewHouseHistory(html)
+        pass

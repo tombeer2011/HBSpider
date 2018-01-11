@@ -21,6 +21,8 @@ from lianjia.model.DealInfoEntity import DealInfoEntity
 from lianjia.model.HouseTypeDetailsEntity import HouseTypeDetailsEntity
 from lianjia.model.LocationDetailsEntity import LocationDetailsEntity
 from lianjia.model.EstateDetailEntity import EstateDetailEntity
+from lianjia.model.ViewHouseHistoryEntity import ViewHouseHistoryEntity
+from lianjia.model.ViewHouseHistoryListEntity import ViewHouseHistoryListEntity
 import types
 class Parser(object):
     '''
@@ -68,6 +70,7 @@ class Parser(object):
         detailEntity.locationDetailsEntity = self.passerLocationDetails(element)
         detailEntity.lianjiaHouseIndex = detailEntity.locationDetailsEntity.lianjiaHouseIndex
         detailEntity.estateDetailEntity = self.passerEstateDetails(element)
+
         return detailEntity
         pass
 
@@ -224,3 +227,29 @@ class Parser(object):
         return estateDetail
         pass
 
+    '''获取JS代码'''
+    def passerJS(self,element):
+        tmp = element.get_text()
+        pass
+
+    '''获取看房记录实体'''
+    def passerViewHouseHistory(self,html):
+        element = BeautifulSoup(html, 'html.parser')
+        viewHouseHistoryListEntity = ViewHouseHistoryListEntity()
+        tmp = element.find_all('div', attrs={'class': 'list-ret'})
+        if(len(tmp) > 0):
+            numerList = tmp[0].find_all('span', attrs={'class', 'c-orange'})
+            if(len(numerList) >=2 ):
+                viewHouseHistoryListEntity.totalTimes = numerList[1].text
+                viewHouseHistoryListEntity.viewHouseUsers = numerList[0].text
+
+        tmp = element.find_all('ul', attrs = {'class','js_jiluList'})
+        for i in range(len(tmp[0].find_all('span', attrs={'class', 'w-1'}))):
+            print(i)
+            viewHouseHistoryEntity = ViewHouseHistoryEntity()
+            viewHouseHistoryEntity.time = tmp[0].find_all('span', attrs={'class', 'w-1'})[i].text
+            viewHouseHistoryEntity.userName = tmp[0].find_all('a', attrs={'class', 'w-2'})[i].text.split('(')
+            viewHouseHistoryEntity.userNameTimes = ReUtils.getNumeric(tmp[0].find_all('a', attrs={'class', 'w-2'})[i].text)
+            viewHouseHistoryListEntity.ViewHouseHistoryEntityList.append(viewHouseHistoryEntity)
+        return viewHouseHistoryListEntity
+        pass

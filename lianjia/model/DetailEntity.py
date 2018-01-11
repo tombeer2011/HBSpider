@@ -15,7 +15,7 @@ from lianjia.model.BaseInfoEntity import BaseInfoEntity
 from lianjia.model.DealInfoEntity import DealInfoEntity
 from lianjia.model.HouseTypeDetailsEntity import HouseTypeDetailsEntity
 from lianjia.model.LocationDetailsEntity import LocationDetailsEntity
-from lianjia.model.ViewHouseHistoryEntity import ViewHouseHistoryEntity
+from lianjia.model.ViewHouseHistoryListEntity import ViewHouseHistoryListEntity
 from lianjia.model.EstateDetailEntity import EstateDetailEntity
 
 class DetailEntity(object):

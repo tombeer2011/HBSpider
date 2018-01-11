@@ -29,12 +29,14 @@ def main():
     #         manager.getDetailHtml(urlList[i][j])
     #         pass
 
+    viewHouseHistory = manager.getViewHouseHistory('''http://m.sh.lianjia.com/ershoufang/jilu/4591094.html''')
 
     tmp = manager.getDetailHtml('''http://sh.lianjia.com/ershoufang/sh4591094.html''')
     # myClassDict = tmp.__dict__
     # print(myClassDict)
     # myClassJson = json.dumps(myClassDict)
     # print(myClassJson)
+
 
 
     pass

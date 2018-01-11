@@ -77,3 +77,10 @@ class Manager(object):
         jsonText = self.downloader.getJson(url)
         return self.downloader.getHouseRoomsDetail(jsonText.encode('utf-8'))
         pass
+
+    '''获取看房记信息'''
+    def getViewHouseHistory(self,url):
+        html = self.downloader.downloadHtmlContent(url)
+        viewHouseHistoryEntity = self.downloader.getViewHouseHistoryEntity(html)
+        return viewHouseHistoryEntity
+        pass
