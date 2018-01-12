@@ -79,8 +79,8 @@ class Manager(object):
         pass
 
     '''获取看房记信息'''
-    def getViewHouseHistory(self,url):
+    def getViewHouseHistoryList(self,url):
         html = self.downloader.downloadHtmlContent(url)
-        viewHouseHistoryEntity = self.downloader.getViewHouseHistoryEntity(html)
-        return viewHouseHistoryEntity
+        viewHouseHistoryListEntity = self.downloader.getViewHouseHistoryListEntity(html)
+        return viewHouseHistoryListEntity
         pass

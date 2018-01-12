@@ -76,6 +76,6 @@ class Downloader(object):
         pass
 
     '''获取看房记录信息实体'''
-    def getViewHouseHistoryEntity(self,html):
+    def getViewHouseHistoryListEntity(self,html):
         return self.parser.passerViewHouseHistory(html)
         pass

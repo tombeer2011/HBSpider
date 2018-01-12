@@ -180,9 +180,13 @@ class Parser(object):
 
     '''解析房屋信息的json数据'''
     def passerHouseRoomsDetails(self,jsonText):
+        if(jsonText == None or '' == jsonText):
+            return []
         jsonDict = dict()
         jsonData = json.loads(jsonText)
         result = []
+        if(jsonData['message'] == '暂无数据'):
+            return result
         if(jsonData['cellInfoList'] != None):
             list = jsonData['cellInfoList']
             for i in range(len(list)):
@@ -245,7 +249,7 @@ class Parser(object):
 
         tmp = element.find_all('ul', attrs = {'class','js_jiluList'})
         for i in range(len(tmp[0].find_all('span', attrs={'class', 'w-1'}))):
-            print(i)
+            # print(i)
             viewHouseHistoryEntity = ViewHouseHistoryEntity()
             viewHouseHistoryEntity.time = tmp[0].find_all('span', attrs={'class', 'w-1'})[i].text
             viewHouseHistoryEntity.userName = tmp[0].find_all('a', attrs={'class', 'w-2'})[i].text.split('(')

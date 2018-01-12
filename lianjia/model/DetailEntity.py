@@ -39,4 +39,5 @@ class DetailEntity(object):
         self.locationDetailsEntity = LocationDetailsEntity()
         self.houseTypeDetailsEntityList = []
         self.estateDetailEntity = EstateDetailEntity()
+        self.viewHouseHistoryListEntity = ViewHouseHistoryListEntity()
         pass
