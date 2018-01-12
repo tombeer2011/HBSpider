@@ -16,16 +16,17 @@ class DealInfoEntity(object):
     classdocs
     '''
 
-    '''上次交易时间'''
-    lastDealTime = ''
-    '''房本年限'''
-    housePeriod = ''
-    '''售房原因'''
-    sellReason = ''
-    '''房屋类型'''
-    houseClass = ''
+
 
     def __init__(self):
         '''
         Constructor
         '''
+        '''上次交易时间'''
+        self.lastDealTime = ''
+        '''房本年限'''
+        self.housePeriod = ''
+        '''售房原因'''
+        self.sellReason = ''
+        '''房屋类型'''
+        self.houseClass = ''

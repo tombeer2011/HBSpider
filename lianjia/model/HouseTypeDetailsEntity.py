@@ -16,15 +16,15 @@ class HouseTypeDetailsEntity(object):
     classdocs
     '''
 
-    '''房间名称'''
-    roomName = ''
-    '''房间面积'''
-    roomArea = 0.0
-    '''房间朝向'''
-    roomOrientation = ''
-    '''房间窗户类型'''
-    roomWindowType = ''
     def __init__(self):
         '''
         Constructor
         '''
+        '''房间名称'''
+        self.roomName = ''
+        '''房间面积'''
+        self.roomArea = 0.0
+        '''房间朝向'''
+        self.roomOrientation = ''
+        '''房间窗户类型'''
+        self.roomWindowType = ''

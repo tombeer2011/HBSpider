@@ -16,20 +16,19 @@ class LocationDetailsEntity(object):
     classdocs
     '''
 
-    '''环线信息'''
-    cycleInfo = ''
-    '''小区名称'''
-    estateName = ''
-    '''城区名称'''
-    districtName = ''
-    '''商圈板块名称'''
-    businessDistrictName = ''
-    '''小区所在地址'''
-    estateAddress = ''
-    '''房源编号'''
-    lianjiaHouseIndex = ''
-
     def __init__(self):
         '''
         Constructor
         '''
+        '''环线信息'''
+        self.cycleInfo = ''
+        '''小区名称'''
+        self.estateName = ''
+        '''城区名称'''
+        self.districtName = ''
+        '''商圈板块名称'''
+        self.businessDistrictName = ''
+        '''小区所在地址'''
+        self.estateAddress = ''
+        '''房源编号'''
+        self.lianjiaHouseIndex = ''

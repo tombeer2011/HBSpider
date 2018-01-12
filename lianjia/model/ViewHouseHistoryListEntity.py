@@ -16,15 +16,13 @@ class ViewHouseHistoryListEntity(object):
     classdocs
     '''
 
-
-    '''累计看房次数'''
-    totalTimes = 0
-    '''最近7天看房客户数'''
-    viewHouseUsers = 0
-    '''看房详细记录'''
-    ViewHouseHistoryEntityList = []
-
     def __init__(self):
         '''
         Constructor
         '''
+        '''累计看房次数'''
+        self.totalTimes = 0
+        '''最近7天看房客户数'''
+        self.viewHouseUsers = 0
+        '''看房详细记录'''
+        self.viewHouseHistoryEntityList = []

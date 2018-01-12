@@ -67,7 +67,7 @@ class Manager(object):
 
         '''获取每个房屋的每个房间的详细信息'''
         houseIndex = ReUtils.getNumeric(detailEntity.lianjiaHouseIndex)
-        detailEntity.houseTypeDetailsEntityList = self.getHouseRoomsDetails(Config.LIANJIA_ROOMS_DATAIL.format(houseIndex[0]))
+        detailEntity.houseTypeDetailsEntityList = self.getHouseRoomsDetails(Config.LIANJIA_ROOMS_DATAIL.format(houseIndex))
 
         return detailEntity
         pass

@@ -23,17 +23,16 @@ class DetailEntity(object):
     classdocs
     '''
 
-    '''房源编号'''
-    lianjiaHouseIndex = ''
-    '''详情标题'''
-    title=''
-    '''房屋价格'''
-    priceNum = 0
-
     def __init__(self):
         '''
         Constructor
         '''
+        '''房源编号'''
+        self.lianjiaHouseIndex = ''
+        '''详情标题'''
+        self.title = ''
+        '''房屋价格'''
+        self.priceNum = 0
         self.baseInfoEntity = BaseInfoEntity()
         self.dealInfoEntity = DealInfoEntity()
         self.locationDetailsEntity = LocationDetailsEntity()

@@ -12,6 +12,8 @@ sys.setdefaultencoding("utf8")
 
 import re
 import string
+import json
+
 class ReUtils(object):
     '''
     classdocs
@@ -27,7 +29,7 @@ class ReUtils(object):
     def getNumeric(string):
         pattern = re.compile(r'\d+')
         houseIndex = re.findall(pattern, string)
-        return houseIndex
+        return houseIndex[0]
 
     '''去除首尾回车和换行符'''
     @staticmethod
@@ -77,4 +79,11 @@ class ReUtils(object):
         if(len(tmp)>1):
             result.append(ReUtils.getNumbericValue(tmp[1]))
         return result
+        pass
+
+    '''获取对象的json字符串形式'''
+    @staticmethod
+    def getObj2Json(obj):
+        jsonStr = json.dumps(obj, ensure_ascii=False, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+        return jsonStr
         pass

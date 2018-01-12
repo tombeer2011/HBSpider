@@ -16,23 +16,22 @@ class EstateDetailEntity(object):
     classdocs
     '''
 
-    '''	挂牌均价'''
-    averagePrice = 0
-
-    '''楼栋总数'''
-    buildingTotalNum = 0
-    '''房屋总数'''
-    houseTotalNum = 0
-    '''物业公司'''
-    propertyManagementCompany = ''
-    '''开发商'''
-    developers = ''
-    '''挂牌房源正在销售'''
-    sellingHouseNum = 0
-    '''挂牌房源正在出租'''
-    rentHouseNum = 0
-
     def __init__(self):
         '''
         Constructor
         '''
+        '''	挂牌均价'''
+        self.averagePrice = 0
+
+        '''楼栋总数'''
+        self.buildingTotalNum = 0
+        '''房屋总数'''
+        self.houseTotalNum = 0
+        '''物业公司'''
+        self.propertyManagementCompany = ''
+        '''开发商'''
+        self.developers = ''
+        '''挂牌房源正在销售'''
+        self.sellingHouseNum = 0
+        '''挂牌房源正在出租'''
+        self.rentHouseNum = 0

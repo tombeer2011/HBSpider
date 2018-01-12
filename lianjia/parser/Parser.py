@@ -252,8 +252,8 @@ class Parser(object):
             # print(i)
             viewHouseHistoryEntity = ViewHouseHistoryEntity()
             viewHouseHistoryEntity.time = tmp[0].find_all('span', attrs={'class', 'w-1'})[i].text
-            viewHouseHistoryEntity.userName = tmp[0].find_all('a', attrs={'class', 'w-2'})[i].text.split('(')
+            viewHouseHistoryEntity.userName = tmp[0].find_all('a', attrs={'class', 'w-2'})[i].text.split('(')[0]
             viewHouseHistoryEntity.userNameTimes = ReUtils.getNumeric(tmp[0].find_all('a', attrs={'class', 'w-2'})[i].text)
-            viewHouseHistoryListEntity.ViewHouseHistoryEntityList.append(viewHouseHistoryEntity)
+            viewHouseHistoryListEntity.viewHouseHistoryEntityList.append(viewHouseHistoryEntity)
         return viewHouseHistoryListEntity
         pass
