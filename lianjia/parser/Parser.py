@@ -63,7 +63,7 @@ class Parser(object):
         detailEntity.title = element.find('h1',attrs = {'class':'header-title'}).string.strip()
         detailEntity.lianjiaHouseIndex = element.find()
         tmp = element.find_all('span',attrs = {'class':'price-num'})
-        detailEntity.priceNum = tmp[0].text.strip()
+        detailEntity.priceNum = float(tmp[0].text.strip())
 
         detailEntity.baseInfoEntity = self.passerBaseInfo(element)
         detailEntity.dealInfoEntity = self.passerDealInfo(element)
@@ -86,15 +86,15 @@ class Parser(object):
                     roomsHalls = ReUtils.getRoomsHalls(list[i + 1].strip())
                     for j in range(len(roomsHalls)):
                         if(j == 0):
-                            baseInfoEntity.houseTypeRoomNum = roomsHalls[j]
+                            baseInfoEntity.houseTypeRoomNum = int(roomsHalls[j])
                         if(j == 1):
-                            baseInfoEntity.houseTypeHallNum = roomsHalls[j]
+                            baseInfoEntity.houseTypeHallNum = int(roomsHalls[j])
                         if(j == 2):
-                            baseInfoEntity.houseTypeBathNum = roomsHalls[j]
+                            baseInfoEntity.houseTypeBathNum = int(roomsHalls[j])
                 if(list[i] == u'配备电梯'):
                     baseInfoEntity.lift = list[i + 1].strip()
                 if(list[i] == u'建筑面积'):
-                    baseInfoEntity.houseArea = ReUtils.getNumbericValue(list[i + 1].strip())
+                    baseInfoEntity.houseArea = float(ReUtils.getNumbericValue(list[i + 1].strip()))
                 if(list[i] == u'供暖方式'):
                     baseInfoEntity.heatingMethod = list[i + 1].strip()
 
@@ -110,7 +110,7 @@ class Parser(object):
                         if(j == 0):
                             baseInfoEntity.houseFloor = floors[j]
                         if(j == 1):
-                            baseInfoEntity.houseTotalFloors = floors[j]
+                            baseInfoEntity.houseTotalFloors = int(floors[j])
                 if(list[i] == u'装修情况'):
                     baseInfoEntity.houseDecorate = list[i + 1].strip()
                 if(list[i] == u'房屋朝向'):
@@ -119,7 +119,7 @@ class Parser(object):
                     baseInfoEntity.isParkingLot = list[i + 1].strip()
 
         tmp = element.find_all('p',attrs = {'class':'u-mt8 u-fz12'})
-        baseInfoEntity.houseCreateTime = ReUtils.getNumbericValue(tmp[2].text.replace('\n','').strip())
+        baseInfoEntity.houseCreateTime = int(ReUtils.getNumbericValue(tmp[2].text.replace('\n','').strip()))
         return baseInfoEntity
 
     ''''解析交易信息'''
@@ -214,11 +214,11 @@ class Parser(object):
             list = ReUtils.replacEnter(str)
             for i in range(len(list)):
                 if(list[i] == u'挂牌均价'):
-                    estateDetail.averagePrice = ReUtils.getNumbericValue(list[i + 1])
+                    estateDetail.averagePrice = float(ReUtils.getNumbericValue(list[i + 1]))
                 if(list[i] == u'楼栋总数'):
-                    estateDetail.buildingTotalNum = ReUtils.getNumbericValue(list[i + 1])
+                    estateDetail.buildingTotalNum = int(ReUtils.getNumbericValue(list[i + 1]))
                 if(list[i] == u'房屋总数'):
-                    estateDetail.houseTotalNum = ReUtils.getNumbericValue(list[i + 1])
+                    estateDetail.houseTotalNum = int(ReUtils.getNumbericValue(list[i + 1]))
                 if(list[i] == u'物业公司'):
                     estateDetail.propertyManagementCompany = list[i + 1]
                 if(list[i] == u'开发商'):
@@ -244,8 +244,8 @@ class Parser(object):
         if(len(tmp) > 0):
             numerList = tmp[0].find_all('span', attrs={'class', 'c-orange'})
             if(len(numerList) >=2 ):
-                viewHouseHistoryListEntity.totalTimes = numerList[1].text
-                viewHouseHistoryListEntity.viewHouseUsers = numerList[0].text
+                viewHouseHistoryListEntity.totalTimes = int(numerList[1].text)
+                viewHouseHistoryListEntity.viewHouseUsers = int(numerList[0].text)
 
         tmp = element.find_all('ul', attrs = {'class','js_jiluList'})
         for i in range(len(tmp[0].find_all('span', attrs={'class', 'w-1'}))):
@@ -253,7 +253,7 @@ class Parser(object):
             viewHouseHistoryEntity = ViewHouseHistoryEntity()
             viewHouseHistoryEntity.time = tmp[0].find_all('span', attrs={'class', 'w-1'})[i].text
             viewHouseHistoryEntity.userName = tmp[0].find_all('a', attrs={'class', 'w-2'})[i].text.split('(')[0]
-            viewHouseHistoryEntity.userNameTimes = ReUtils.getNumeric(tmp[0].find_all('a', attrs={'class', 'w-2'})[i].text)
+            viewHouseHistoryEntity.userNameTimes = int(ReUtils.getNumeric(tmp[0].find_all('a', attrs={'class', 'w-2'})[i].text))
             viewHouseHistoryListEntity.viewHouseHistoryEntityList.append(viewHouseHistoryEntity)
         return viewHouseHistoryListEntity
         pass
